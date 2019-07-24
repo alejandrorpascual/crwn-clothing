@@ -6,13 +6,13 @@ import {
 } from '../../firebase/firebase.utils';
 
 import {
-  fecthCollectionsSuccess,
+  fetchCollectionsSuccess,
   fetchCollectionsFailure
 } from './shop.actions';
 
 import ShopActionTypes from './shop.types';
 
-export function* fetchCollectionsAysnc() {
+export function* fetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection('collections');
     const snapshot = yield collectionRef.get();
@@ -20,7 +20,7 @@ export function* fetchCollectionsAysnc() {
       convertCollectionsSnapshotToMap,
       snapshot
     );
-    yield put(fecthCollectionsSuccess(collectionsMap));
+    yield put(fetchCollectionsSuccess(collectionsMap));
   } catch (error) {
     yield put(fetchCollectionsFailure(error.message));
   }
@@ -29,7 +29,7 @@ export function* fetchCollectionsAysnc() {
 export function* fetchCollectionsStart() {
   yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
-    fetchCollectionsAysnc
+    fetchCollectionsAsync
   );
 }
 

@@ -1,4 +1,3 @@
-
 import styled, { css } from 'styled-components';
 
 const buttonStyles = css`
@@ -57,5 +56,6 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+
   ${getButtonStyles}
 `;
